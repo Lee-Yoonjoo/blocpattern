@@ -1,14 +1,22 @@
 import 'package:blockpattern/stateful.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc_library/bloclibrarywidget.dart';
+import 'bloc_library/counter_observer.dart';
 import 'bloc_pattern/blocwidget.dart';
 
 void main() {
+
+/*  BlocOverrides.runZoned(
+        () => runApp(const MyApp()),
+    blocObserver: CounterObserver(),
+  );*/
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, }) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -69,9 +77,9 @@ class _HomePageState extends State<Home> {
               color: Colors.grey,
               child: Text("With Bloclibrary"),
               onPressed: (){
-                /*Navigator.push(context, MaterialPageRoute(builder: (_){
-                  return BlocLibrary();
-                }));*/
+                Navigator.push(context, MaterialPageRoute(builder: (_){
+                  return BlocLibraryWidget();
+                }));
               },
             ),
           ),
