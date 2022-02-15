@@ -1,3 +1,4 @@
+import 'package:blockpattern/flutter_bloc_library/counter_bloc.dart';
 import 'package:blockpattern/stateful.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc_library/bloclibrarywidget.dart';
 import 'bloc_library/counter_observer.dart';
 import 'bloc_pattern/blocwidget.dart';
+import 'flutter_bloc_library/counter_widget.dart';
 
 void main() {
-
 /*  BlocOverrides.runZoned(
         () => runApp(const MyApp()),
     blocObserver: CounterObserver(),
@@ -16,7 +17,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key, }) : super(key: key);
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -33,8 +36,6 @@ class MyApp extends StatelessWidget {
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
-
-
 
   @override
   State<Home> createState() => _HomePageState();
@@ -58,44 +59,57 @@ class _HomePageState extends State<Home> {
         title: Text('Flutter Bloc Pattern'),
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-            Center(
-              child: FlatButton(
-                color: Colors.grey,
-                child: Text("Bloc Pattern"),
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_){
-                    return BlocWidget();
-                  }));
-                },
-              ),
+          Center(
+            child: FlatButton(
+              color: Colors.grey,
+              child: Text("Flutter Bloc Library"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+                  return BlocProvider<CounterFlutterBloc>(
+                    create: (context) => CounterFlutterBloc(),
+                    child: BlocFlutterLibraryWidget(),
+                  );
+                }));
+              },
             ),
+          ),
+          Center(
+            child: FlatButton(
+              color: Colors.grey,
+              child: Text("Bloc Pattern"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+                  return BlocWidget();
+                }));
+              },
+            ),
+          ),
           Center(
             child: FlatButton(
               color: Colors.grey,
               child: Text("With Bloclibrary"),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_){
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
                   return BlocLibraryWidget();
                 }));
               },
             ),
           ),
-            Center(
-              child: FlatButton(
-                color: Colors.grey,
-                child: Text("Normal Stateful"),
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_){
-                    return NormalStatefulWidget();
-                  }));
-                },
-              ),
+          Center(
+            child: FlatButton(
+              color: Colors.grey,
+              child: Text("Normal Stateful"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+                  return NormalStatefulWidget();
+                }));
+              },
             ),
-          ],
-
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

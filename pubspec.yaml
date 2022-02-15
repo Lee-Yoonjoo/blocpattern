@@ -35,6 +35,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_bloc: ^8.0.1
+  bloc: ^8.0.2
+
+#The 'bloc' package contains things you will use in your Bloc layer, like the Bloc class. This isn't necessarily flutter dependent, it is just the logic architecture of your app.
+#The 'flutter bloc' package contains elements you will use in your UI layer. It includes widgets like BlocProvider and BlocBuilder, which are widgets and thus flutter dependent.
+#flutter_bloc is dependent on/derived from the bloc package. To implement bloc in a flutter app, all you need is the flutter_bloc package as it inherits/implements all the necessary classes from the bloc package.
 
 dev_dependencies:
   flutter_test:
