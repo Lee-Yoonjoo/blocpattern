@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'countbloc.dart';
+
+
 class BlocWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _BlockWidgetState();
@@ -9,38 +12,33 @@ class BlocWidget extends StatefulWidget {
 
 class _BlockWidgetState extends State<BlocWidget> {
 
-  CountBloc countBloc;
-
-
-
-
+  CountBloc countBloc = CountBloc();
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
         title: Text("Bloc Pattern"),
       ),
-      body: CountView(),
+      body: CountView(countBloc: countBloc),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IconButton(
               onPressed:(){
                 //call bloc logic here instead of method
-                //register bloc event here
+                countBloc.add();
               },
               icon: Icon(Icons.add)),
 
           IconButton(
               onPressed:(){
                 //call bloc logic here instead of method
-                //register bloc event here
+                countBloc.minus();
               },
               icon: Icon(Icons.remove)),
 
         ],
-      ),,
-
+      ),
     );
   }
 
@@ -61,7 +59,8 @@ class _BlockWidgetState extends State<BlocWidget> {
 
 //Seperate updating View
 class CountView extends StatelessWidget {
-  CountView({Key? key}) : super(key: key);
+  CountBloc countBloc;
+  CountView({Key? key, required this.countBloc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
