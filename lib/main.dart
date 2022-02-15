@@ -65,9 +65,9 @@ class _HomePageState extends State<Home> {
                 color: Colors.grey,
                 child: Text("Bloc Pattern"),
                 onPressed: (){
-               /*   Navigator.push(context, MaterialPageRoute(builder: (_){
+                  Navigator.push(context, MaterialPageRoute(builder: (_){
                     return BlocWidget();
-                  }));*/
+                  }));
                 },
               ),
             ),

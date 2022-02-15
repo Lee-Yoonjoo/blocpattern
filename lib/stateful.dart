@@ -9,11 +9,17 @@ class NormalStatefulWidget extends StatefulWidget {
 }
 
 class _NormalStatefulWidgetState extends State<NormalStatefulWidget> {
-  int _counter = 0;
+
+  int count = 0;
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      count++;
+    });
+  }
+  void _decrementCounter() {
+    setState(() {
+      count--;
     });
   }
 
@@ -22,45 +28,38 @@ class _NormalStatefulWidgetState extends State<NormalStatefulWidget> {
 
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text('Normal Stateful Widget'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: CountViewStateless(count: count),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          IconButton(
+              onPressed: _incrementCounter,
+              icon: Icon(Icons.add)),
+
+          IconButton(
+              onPressed: _decrementCounter,
+              icon: Icon(Icons.remove)),
+
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class CountViewStateless extends StatelessWidget {
+  int count;
+  CountViewStateless({Key? key, required this.count}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    print("Seperated Class only for Count Display");
+    return Center(
+      child:Text(
+        count.toString(),
+        style: TextStyle(fontSize: 80),
+      ),
     );
   }
 }
