@@ -76,13 +76,14 @@ class _HomePageState extends State<Home> {
               },
             ),
           ),
+
           Center(
             child: FlatButton(
               color: Colors.grey,
-              child: Text("Bloc Pattern"),
+              child: Text("Bloc Pattern with library before 8.0.0"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return BlocWidget();
+                  return BlocLibraryWidget();
                 }));
               },
             ),
@@ -90,10 +91,10 @@ class _HomePageState extends State<Home> {
           Center(
             child: FlatButton(
               color: Colors.grey,
-              child: Text("With Bloclibrary"),
+              child: Text("Bloc Pattern without Library"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return BlocLibraryWidget();
+                  return BlocWidget();
                 }));
               },
             ),
